@@ -53,10 +53,21 @@ public class WelcomeUI extends UI implements Button.ClickListener {
 				// TODO Auto-generated method stub
 
 				Button btn = new Button(provider.getName(), this);
-				String redir = provider.getAuthorizeUrl()
-						+ "?client_id=" + provider.getClientId()
-						+ "&redirect_uri=" + getPage().getLocation()
-						+ "oauth?id=" + provider.getId();
+				String redir;
+				if (provider.getName().equalsIgnoreCase("google")) {
+					redir = provider.getAuthorizeUrl()
+							+ "?client_id=" + provider.getClientId()
+							+ "&redirect_uri=" + getPage().getLocation()
+							+ "oauth?id=" + provider.getId()
+							+ "&response_type=code"
+							+ "&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile"
+							+ "&approval_prompt=auto";
+				} else {
+					redir = provider.getAuthorizeUrl()
+							+ "?client_id=" + provider.getClientId()
+							+ "&redirect_uri=" + getPage().getLocation()
+							+ "oauth? id=" + provider.getId();
+				}
 				logger.info(redir);
 				btn.setData(redir);
 				layout.addComponent(btn);
