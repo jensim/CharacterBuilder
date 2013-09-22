@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="rollspel" transaction-type="JTA">
+        
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        
+        <jta-data-source>java:jboss/datasources/rollspel</jta-data-source>
+        
+        <class>se.jensim.chargen.persistence.entities.MutantBaseStatCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangExceptionalLevel</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelGruppApplication</class>
+        <class>se.jensim.chargen.persistence.entities.MutantClass</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelStatus</class>
+        <class>se.jensim.chargen.persistence.entities.MutantSkill</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangExceptionalCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangArmor</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterAbility</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangArmorSetArmor</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangElaborationFree</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangWeaponProjectileCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.MutantSkillCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangBodypart</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangPowerCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangVitnerType</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangPower</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangArmorMod</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelGrupp</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelLog</class>
+        <class>se.jensim.chargen.persistence.entities.MutantWeaponCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.MutantItemCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangSkillCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.MutantOccupation</class>
+        <class>se.jensim.chargen.persistence.entities.MutantArmorCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.OauthProvider</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterWealth</class>
+        <class>se.jensim.chargen.persistence.entities.MutantSkillOccupation</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangUpbringing</class>
+        <class>se.jensim.chargen.persistence.entities.MutantArmorBodypart</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangItemCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangElaborationLevel</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelLogType</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangExceptional</class>
+        <class>se.jensim.chargen.persistence.entities.MutantWeapon</class>
+        <class>se.jensim.chargen.persistence.entities.MutantBaseStat</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangWeaponMeleeCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterCraft</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangBook</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangWeaponMelee</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangElaborationRequire</class>
+        <class>se.jensim.chargen.persistence.entities.MutantDamageBonus</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangSkill</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterShadowentity</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangElaboration</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterNameType</class>
+        <class>se.jensim.chargen.persistence.entities.FrontPageNews</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangDamageDice</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterNametemplate</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangWeaponProjectile</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangMod</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangSkillInGroup</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangArmorCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangElaborationCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangItem</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelUser</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangSkillStart</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangWeaponType</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangVitnerPowerlevelCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelUserRoleApplication</class>
+        <class>se.jensim.chargen.persistence.entities.MutantCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterRelationType</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangPeople</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangVitner</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangSkillGroup</class>
+        <class>se.jensim.chargen.persistence.entities.MutantAbilityCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangModType</class>
+        <class>se.jensim.chargen.persistence.entities.MutantArmor</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangModCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterRelationChar</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelUserRole</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangVitnerCharacter</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterAbilitycrafts</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterRelationLevel</class>
+        <class>se.jensim.chargen.persistence.entities.MutantItem</class>
+        <class>se.jensim.chargen.persistence.entities.MutantAbility</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelGruppRole</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangReligion</class>
+        <class>se.jensim.chargen.persistence.entities.SvavelvinterNameRegion</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangVitnerPowerlevel</class>
+        <class>se.jensim.chargen.persistence.entities.MutantAbilityGroup</class>
+        <class>se.jensim.chargen.persistence.entities.TrudvangArmorSet</class>
+        <class>se.jensim.chargen.persistence.entities.RollspelGruppMember</class>
+		<class>se.jensim.chargen.persistence.entities.TrudvangArktype</class>
+
+		<validation-mode>NONE</validation-mode>
+
+		<properties>
+			<property name="javax.persistence.validation.group.pre-persist" value="" />
+			<property name="eclipselink.jdbc.platform"
+					  value="org.eclipse.persistence.platform.database.PostgreSQLPlatform" />
+			<property name="eclipselink.logging.level" value="INFO" />
+			<property name="eclipselink.target-server" value="jboss" />
+			<property name="eclipselink.weaving" value="static" />
+			<property name="eclipselink.deploy-on-startup" value="True" />
+
+        </properties>
+    </persistence-unit>
+</persistence>
