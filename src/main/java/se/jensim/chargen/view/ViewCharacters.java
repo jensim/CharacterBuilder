@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.jensim.chargen.view;
 
-import se.jensim.chargen.prop.JeConst;
 import com.vaadin.cdi.CDIView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -20,13 +15,13 @@ import se.jensim.chargen.ui.GameUi;
  *
  * @author jens
  */
-@CDIView(supportsParameters = false, uis = GameUi.class)
+@CDIView(uis = GameUi.class, value = "chars")
 @RolesAllowed({ConstRoles.USER, ConstRoles.MODERATOR, ConstRoles.ADMIN, ConstRoles.OWNER})
-public class ViewZero extends VerticalLayout implements View {
+public class ViewCharacters extends VerticalLayout implements View {
 
-	private Label lblHead = new Label("<h1>Welcome</h1>", ContentMode.HTML);
+	private final Label lblHead = new Label("<h1>HEAD</h1>", ContentMode.HTML);
 
-	public ViewZero() {
+	private ViewCharacters() {
 	}
 
 	@PostConstruct
@@ -36,6 +31,5 @@ public class ViewZero extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent event) {
-		
 	}
 }

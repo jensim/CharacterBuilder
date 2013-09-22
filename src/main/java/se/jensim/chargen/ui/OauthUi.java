@@ -71,6 +71,7 @@ public class OauthUi extends UI {
 			}
 			Integer id = Integer.parseInt(strID);
 			String code = parameterMap.get("code")[0];
+			System.out.println("CODE: " + code);
 
 			OauthProvider provider = entityManager.find(OauthProvider.class, id);
 
@@ -111,13 +112,11 @@ public class OauthUi extends UI {
 
 			//TODO Set new random password
 
-			String strRand = "fisk";//getSimplePass();
-			System.out.println("TEMP PASS: " + strRand);
-
+			String strRand = getSimplePass();
+			
 			//MD5-convertera skiten
 			String strRandMd5 = MD5(strRand);
-			System.out.println("MD5 HEX PASS: " + strRandMd5);
-
+			
 			userTransaction.begin();
 			RollspelUser user2 = entityManager.find(RollspelUser.class, user.getId());
 			user2.setPassword(strRandMd5);
@@ -136,6 +135,7 @@ public class OauthUi extends UI {
 				ex.printStackTrace();
 			}
 			setContent(new Label("<h1>error</h1>", ContentMode.HTML));
+			getPage().setLocation("../?failed=true");
 		}
 	}
 

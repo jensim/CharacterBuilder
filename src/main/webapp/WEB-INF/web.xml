@@ -33,12 +33,13 @@
 		<error-code>403</error-code>
 		<location>/error_pages/403.html</location>
 	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/error_pages/401.html</location>
+	</error-page>
 	
 	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-error-page>/</form-error-page>
-		</form-login-config>
+		<auth-method>BASIC</auth-method>
 		<realm-name>jboss-web-policy</realm-name>
 	</login-config>
 
