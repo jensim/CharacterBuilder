@@ -5,16 +5,11 @@ import com.vaadin.cdi.access.JaasAccessControl;
 import com.vaadin.external.org.slf4j.Logger;
 import com.vaadin.external.org.slf4j.LoggerFactory;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import java.security.Provider;
-import java.security.Security;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -57,16 +52,17 @@ public class WelcomeUI extends UI implements Button.ClickListener {
 				if (provider.getName().equalsIgnoreCase("google")) {
 					redir = provider.getAuthorizeUrl()
 							+ "?client_id=" + provider.getClientId()
-							+ "&redirect_uri=" + getPage().getLocation()
+							+ "&redirect_uri=" + getPage().getLocation().toString().split("\\?")[0]
 							+ "oauth?id=" + provider.getId()
 							+ "&response_type=code"
-							+ "&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile"
+							+ "&scope=https://www.googleapis.com/auth/userinfo.profile"
+							//+ "&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile"
 							+ "&approval_prompt=auto";
 				} else {
 					redir = provider.getAuthorizeUrl()
 							+ "?client_id=" + provider.getClientId()
-							+ "&redirect_uri=" + getPage().getLocation()
-							+ "oauth? id=" + provider.getId();
+							+ "&redirect_uri=" + getPage().getLocation().toString().split("\\?")[0]
+							+ "oauth?id=" + provider.getId();
 				}
 				logger.info(redir);
 				btn.setData(redir);

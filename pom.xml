@@ -6,6 +6,7 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>chargen</name>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -14,6 +15,7 @@
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<jpacontainer.version>2.0.0</jpacontainer.version>
 	</properties>
+
 	<repositories>
 		<repository>
 			<id>vaadin-addons</id>
@@ -23,7 +25,12 @@
 			<id>EclipseLink Repo</id>
 			<url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo</url>
 		</repository>
+		<repository>
+			<id>google-api-services</id>
+			<url>http://google-api-client-libraries.appspot.com/mavenrepo</url>
+		</repository>
 	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.vaadin</groupId>
@@ -114,6 +121,28 @@
 			<version>1.0-SP4</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-oauth2</artifactId>
+			<version>v2-rev29-1.13.2-beta</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client</artifactId>
+			<version>1.13.1-beta</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client-jackson</artifactId>
+			<version>1.13.1-beta</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
 	</dependencies>
 	
 	<build>

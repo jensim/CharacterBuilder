@@ -50,6 +50,7 @@ public class HttpTool {
 	public static String getRequest(String url, String params) throws Exception {
 
 		HttpClient client = new DefaultHttpClient();
+		System.out.println("GETing: '" + url + params + "'.");
 		HttpGet request = new HttpGet(url + params);
 		HttpResponse response = client.execute(request);
 
@@ -58,6 +59,7 @@ public class HttpTool {
 
 	public static String postRequest(String url, String params) throws Exception {
 		HttpClient client = new DefaultHttpClient();
+		System.out.println("POSTing: '" + url + params + "'.");
 		HttpPost post = new HttpPost(url + params);
 		HttpResponse response = client.execute(post);
 
