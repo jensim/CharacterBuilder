@@ -4,7 +4,7 @@ package se.jensim.chargen.prop;
  *
  * @author jens
  */
-public class ConstRoles {
+public final class ConstRoles {
 
 	private ConstRoles() {
 	}

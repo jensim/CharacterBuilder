@@ -13,6 +13,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import se.jensim.chargen.prop.ConstRoles;
 import se.jensim.chargen.view.ViewZero;
 
 /**
@@ -20,7 +21,7 @@ import se.jensim.chargen.view.ViewZero;
  * @author jens
  */
 @CDIUI("game")
-@RolesAllowed({"admin", "user"})
+@RolesAllowed({ConstRoles.USER, ConstRoles.MODERATOR, ConstRoles.MODERATOR, ConstRoles.OWNER})
 public class GameUi extends UI{
     
     @Inject

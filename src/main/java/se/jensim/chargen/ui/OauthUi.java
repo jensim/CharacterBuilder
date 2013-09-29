@@ -166,6 +166,7 @@ public class OauthUi extends UI {
 
 			JaasAccessControl.login(user.getEmail(), strRand);
 			if (accessControl.isUserSignedIn()) {
+
 				getPage().setLocation("game");
 			} else {
 				getPage().setLocation("..");

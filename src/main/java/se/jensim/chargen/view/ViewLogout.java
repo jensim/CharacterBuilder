@@ -12,19 +12,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.RolesAllowed;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
+import se.jensim.chargen.gui.menu.ChargenMenu;
 import se.jensim.chargen.prop.ConstRoles;
+import se.jensim.chargen.prop.ConstViews;
 import se.jensim.chargen.ui.GameUi;
 
 /**
  *
  * @author jens
  */
-@CDIView(uis = GameUi.class, value = "logout")
+@CDIView(uis = GameUi.class, value = ConstViews.LOGOUT)
 @RolesAllowed({ConstRoles.USER, ConstRoles.MODERATOR, ConstRoles.ADMIN, ConstRoles.OWNER})
 public class ViewLogout extends VerticalLayout
 		implements View, Button.ClickListener {
 
+	@Inject
+	private ChargenMenu menu;
 	private final Label lblContent = new Label("Are you sure?", ContentMode.HTML);
 	private final Button btnLogout = new Button("LOGOUT", this);
 	
@@ -33,6 +38,7 @@ public class ViewLogout extends VerticalLayout
 
 	@PostConstruct
 	private void init() {
+		addComponent(menu);
 		addComponent(lblContent);
 		addComponent(btnLogout);
 

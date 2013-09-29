@@ -1,12 +1,16 @@
 package se.jensim.chargen.ui;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.cdi.CDIUI;
 import com.vaadin.cdi.access.JaasAccessControl;
 import com.vaadin.external.org.slf4j.Logger;
 import com.vaadin.external.org.slf4j.LoggerFactory;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -17,6 +21,7 @@ import javax.persistence.PersistenceContext;
 import se.jensim.chargen.persistence.entities.OauthProvider;
 
 @CDIUI("")
+@Theme("chameleon")
 public class WelcomeUI extends UI implements Button.ClickListener {
 
 	private static final long serialVersionUID = 1511280419027917279L;
@@ -34,11 +39,17 @@ public class WelcomeUI extends UI implements Button.ClickListener {
 		}
 
 		final VerticalLayout layout = new VerticalLayout();
-		layout.setSizeUndefined();
+		//layout.setSizeFull();
 		layout.setSpacing(true);
 		final Panel pnal = new Panel(layout);
 
 		setContent(pnal);
+		pnal.setSizeFull();
+
+		Label lblWelcome = new Label("<center>Welcome to my roleplay portal<br/>\n"
+				+ "Please select a method of signing in</center>", ContentMode.HTML);
+		layout.addComponent(lblWelcome);
+		layout.setComponentAlignment(lblWelcome, Alignment.TOP_CENTER);
 
 		List<OauthProvider> providerList = entityManager.createQuery(
 				"SELECT op FROM " + OauthProvider.class.getCanonicalName() + " op ", OauthProvider.class)
@@ -67,8 +78,15 @@ public class WelcomeUI extends UI implements Button.ClickListener {
 				logger.info(redir);
 				btn.setData(redir);
 				layout.addComponent(btn);
+				layout.setComponentAlignment(btn, Alignment.TOP_CENTER);
 			}
 		}
+
+		Label lblInfo = new Label("<center><font color=\"gray\">Clicking a button will redirect you<br/>\n"
+				+ "to perform authentication at the<br/>\n"
+				+ "selected login site.</font></center>", ContentMode.HTML);
+		layout.addComponent(lblInfo);
+		layout.setComponentAlignment(lblInfo, Alignment.TOP_CENTER);
 	}
 
 	@Override

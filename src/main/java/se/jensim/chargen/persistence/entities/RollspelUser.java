@@ -3,7 +3,6 @@ package se.jensim.chargen.persistence.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +28,13 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "rollspel_user", catalog = "rollspel", schema = "public")
+@NamedQueries({
+	@NamedQuery(name = "getId", hints = {
+		@QueryHint(name = "uid", value = "user oauthID"),
+		@QueryHint(name = "pid", value = "oauth provider name")},
+			query = "SELECT u." + RollspelUser.ID
+			+ " FROM RollspelUser u JOIN u." + RollspelUser.OAUTH_PROVIDER + " p WHERE u."
+			+ RollspelUser.OAUTH_USER_ID + " = :uid AND p." + OauthProvider.NAME + " = :pid")})
 public class RollspelUser implements Serializable {
 
 	@Id
@@ -43,7 +52,7 @@ public class RollspelUser implements Serializable {
 	// @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
 	@NotNull
 	@Size(min = 1, max = 250)
-	@Column(name = "email", nullable = false, length = 250)
+	@Column(name = "email", nullable = false, length = 250, unique = true)
 	private String email;
 	@Size(max = 250)
 	@Column(name = "password", length = 250)
