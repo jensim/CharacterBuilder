@@ -16,7 +16,11 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
+import com.vaadin.ui.NativeSelect;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,24 +32,28 @@ import se.jensim.chargen.persistence.entities.MutantClass;
  * @author jens
  */
 @UIScoped
-public class MCCSelectRace extends HorizontalLayout
+public class MCCSelectRace extends VerticalLayout
 		implements WizardStep, Property.ValueChangeListener {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	private JPAContainer<MutantClass> container;
-	private final ListSelect select = new ListSelect();
+	private NativeSelect select = null;
 	private final Label lblInfo = new Label("", ContentMode.HTML);
 	private final Panel pnlInfo = new Panel(null, lblInfo);
 
 	private MCCSelectRace() {
 	}
 
+	public MCCSelectRace(EntityManager em) {
+		this.entityManager = em;
+	}
+
 	@PostConstruct
 	private void init() {
 		//TODO
 		container = JPAContainerFactory.make(MutantClass.class, entityManager);
-		select.setContainerDataSource(container);
+		select = new NativeSelect(null, container);
 		select.setNullSelectionAllowed(false);
 		select.setMultiSelect(false);
 		select.setItemCaptionMode(AbstractSelect.ItemCaptionMode.ITEM);
@@ -85,5 +93,9 @@ public class MCCSelectRace extends HorizontalLayout
 
 	@Override
 	public void valueChange(Property.ValueChangeEvent event) {
+		MutantClass klass = container.getItem(event.getProperty().getValue()).getEntity();
+		if (klass == null) {
+			Notification.show("FEL", "SO WRUNG", Notification.Type.ERROR_MESSAGE);
+		}
 	}
 }

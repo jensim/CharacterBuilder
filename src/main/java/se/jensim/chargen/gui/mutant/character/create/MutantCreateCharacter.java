@@ -12,6 +12,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.vaadin.teemu.wizards.Wizard;
+import org.vaadin.teemu.wizards.event.WizardCancelledEvent;
+import org.vaadin.teemu.wizards.event.WizardCompletedEvent;
+import org.vaadin.teemu.wizards.event.WizardProgressListener;
+import org.vaadin.teemu.wizards.event.WizardStepActivationEvent;
+import org.vaadin.teemu.wizards.event.WizardStepSetChangedEvent;
 import se.jensim.chargen.persistence.entities.OauthProvider;
 import se.jensim.chargen.persistence.entities.RollspelUser;
 
@@ -20,13 +25,15 @@ import se.jensim.chargen.persistence.entities.RollspelUser;
  * @author jens
  */
 @UIScoped
-public class MutantCreateCharacter extends Window {
+public class MutantCreateCharacter extends Window
+		implements WizardProgressListener {
 
 	@Inject
 	private JaasAccessControl accessControl;
 	@PersistenceContext
 	private EntityManager entityManager;
-	private Integer userId;
+	@Inject
+	private MCCSelectRace stepClass;
 
 	private final Wizard wiz = new Wizard();
 
@@ -37,7 +44,32 @@ public class MutantCreateCharacter extends Window {
 	@PostConstruct
 	private void init() {
 		//TODO
+		wiz.addStep(stepClass);
+
+		wiz.addListener(this);
+
+		setContent(wiz);
+
 		setModal(true);
 		center();
+	}
+
+	@Override
+	public void activeStepChanged(WizardStepActivationEvent event) {
+		setSizeUndefined();
+	}
+
+	@Override
+	public void stepSetChanged(WizardStepSetChangedEvent event) {
+	}
+
+	@Override
+	public void wizardCompleted(WizardCompletedEvent event) {
+		//TODO
+	}
+
+	@Override
+	public void wizardCancelled(WizardCancelledEvent event) {
+		//TODO
 	}
 }
