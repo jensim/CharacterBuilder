@@ -36,17 +36,8 @@ public class MutantCreateCharacter extends Window {
 
 	@PostConstruct
 	private void init() {
-		String email = accessControl.getPrincipalName();
-		String[] splitName = email.split("@");
-		String providerUID = splitName[0];
-		String providerID = splitName[1];
-		userId = entityManager.createQuery("SELECT u." + RollspelUser.ID
-				+ " FROM " + RollspelUser.class.getName() + " u "
-				+ " JOIN u." + RollspelUser.OAUTH_PROVIDER + " p "
-				+ " WHERE u." + RollspelUser.OAUTH_USER_ID
-				+ " = :uid AND p." + OauthProvider.NAME + " = :pname", Integer.class)
-				.setParameter("uid", providerUID)
-				.setParameter("pname", providerID)
-				.getSingleResult();
+		//TODO
+		setModal(true);
+		center();
 	}
 }

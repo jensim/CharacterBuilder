@@ -6,10 +6,12 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.Window;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import se.jensim.chargen.gui.mutant.character.create.MutantCreateCharacter;
 import se.jensim.chargen.prop.ConstRoles;
 import se.jensim.chargen.prop.ConstViews;
 
@@ -25,6 +27,8 @@ public class ChargenMenu extends HorizontalLayout {
 	private final MenuBar rightMenu = new MenuBar();
 	@Inject
 	private JaasAccessControl accessControl;
+	@Inject
+	private MutantCreateCharacter windowCreateCharacter;
 
 	private ChargenMenu() {
 	}
@@ -35,9 +39,14 @@ public class ChargenMenu extends HorizontalLayout {
 		//SETUP LEFT
 		leftMenu.addItem("Start", new CharNavCmd(ConstViews.START));
 		MenuItem miMutant = leftMenu.addItem("Mutant", null);
-		miMutant.addItem("Create character", new CharNavCmd(ConstViews.MUTANT_CHAR_CREATE));
-		miMutant.addItem("List characters", new CharNavCmd(ConstViews.MUTANT_CHAR_LIST));
+
+		miMutant.addItem("Create character",
+				new CharWindowCmd(windowCreateCharacter));
+		miMutant.addItem("List characters",
+				new CharNavCmd(ConstViews.MUTANT_CHAR_LIST));
+
 		if (accessControl.isUserInSomeRole(ConstRoles.ADMIN, ConstRoles.OWNER)) {
+			//TODO: Add admin options
 		}
 
 		MenuItem miTrudvang = leftMenu.addItem("Trudvang", null);
@@ -66,6 +75,20 @@ public class ChargenMenu extends HorizontalLayout {
 		@Override
 		public void menuSelected(MenuBar.MenuItem selectedItem) {
 			getUI().getPage().setUriFragment("!" + navStr);
+		}
+	}
+
+	private class CharWindowCmd implements Command {
+
+		private final Window wind;
+
+		public CharWindowCmd(Window w) {
+			this.wind = w;
+		}
+
+		@Override
+		public void menuSelected(MenuItem selectedItem) {
+			getUI().addWindow(wind);
 		}
 	}
 }
